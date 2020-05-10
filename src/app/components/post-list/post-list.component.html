@@ -1,0 +1,60 @@
+<div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-danger text-center" *ngIf="status == 'error'">
+                Tuvimos problema
+            </div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let post of posts" >
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.title }}</td>
+                            <td>
+                                <div *ngIf="post.image" class="form-group row">
+                                    <img class="img-thumbnail img-fluid mx-auto d-block" src="{{url + 'posts/image/' + post.image}}" alt="Image del post">
+                                </div>
+                            </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-outline-primary float-right" [routerLink]="['../','post_show',post.id]" >Show</a>
+                                <a *ngIf="post.user_id == user.sub" class="btn btn-outline-warning float-right" [routerLink]="['../','post_edit',post.id]" >Edit</a>
+                                <!-- Button trigger modal -->
+                                <button *ngIf="post.user_id == user.sub" type="button" class="btn btn-outline-danger" data-toggle="modal" [attr.data-target]="'#modal'+post.id">Delete</button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="{{'modal'+post.id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Esta seguro que desea eliminar el post {{ post.title }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                                            <a *ngIf="post.user_id == user.sub" (click)="delete(post.id)" class="btn btn-outline-danger" data-dismiss="modal">OK</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

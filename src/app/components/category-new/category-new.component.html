@@ -1,0 +1,39 @@
+<div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-success text-center" *ngIf="status == 'success'">
+                La categoria se creo correctamente
+            </div>
+            <div class="alert alert-danger text-center" *ngIf="status == 'error'">
+                Tuvimos problema en el registro
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Create category</h2>
+                </div>
+                <div class="card-body">
+                    <form action="#" #storeForm="ngForm" (ngSubmit)="onSubmit(storeForm)">
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" #name="ngModel"
+                                    [(ngModel)]="category.name" required pattern="[a-zA-Z]+" />
+                                <span *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+                                    El nombre no es válido
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-success" [disabled]="storeForm.invalid">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-danger text-center" *ngIf="status == 'error'">
+                Tuvimos problema
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img *ngIf="post.image" class="card-img-top" src="{{url + 'posts/image/' + post.image}}" alt="Image del post">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text" [innerHtml]="post.content" ></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Category: {{ post.category.name }}</li>
+                    <li class="list-group-item">User: {{ post.user.name }} {{ post.user.surname }}</li>
+                    <li class="list-group-item">Created at: {{ post.created_at }}</li>
+                    <li class="list-group-item">Updated at: {{ post.updated_at }}</li>
+                </ul>
+                <div class="card-body">
+                    <a class="btn btn-outline-secondary" [routerLink]="['../../','posts']" >Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

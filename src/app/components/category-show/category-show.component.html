@@ -1,0 +1,25 @@
+<div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-danger text-center" *ngIf="status == 'error'">
+                Tuvimos problema
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h2 class="text-center">{{ category.name }}</h2>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Post list</h5>
+                    <div *ngIf="category.posts">
+                        <ul *ngFor="let post of category.posts" class="list-group list-group-flush">
+                            <li class="list-group-item">{{ post.title }} <a class="btn btn-outline-primary float-right" [routerLink]="['../../','post_show',post.id]" >Detail</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a class="btn btn-outline-secondary" [routerLink]="['../../','categories']" >Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

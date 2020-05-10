@@ -1,0 +1,83 @@
+<div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-success text-center" *ngIf="status == 'success'">
+                El usuario se creo correctamente
+            </div>
+            <div class="alert alert-danger text-center" *ngIf="status == 'error'">
+                Tuvimos problema en el registro
+            </div>
+            <div class="card">
+                <div class="card-header"><h2 class="text-center">Register</h2></div>
+                <div class="card-body">
+                    <form action="#" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="user.name" required pattern="[a-zA-Z]+">
+                                <span *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+                                    El nombre no es válido
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">Surname</label>
+
+                            <div class="col-md-6">
+                                <input id="surname" type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="user.surname" required required pattern="[a-zA-Z]+">
+                                <span *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">
+                                    El apellido no es válido
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
+
+                            <div class="col-md-6">
+                                <textarea [froalaEditor]="options" id="description" type="text" class="form-control" name="description" #description="ngModel" [(ngModel)]="user.description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                <span *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+                                    El email no es válido
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" required pattern=".{8,}">
+                                <span *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">
+                                    La password no es válida
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
